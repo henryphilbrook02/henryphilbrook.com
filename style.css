@@ -18,7 +18,7 @@ body
 
 .navbar
 {
-    background-image: linear-gradient(to right, #a517ba, #5f1782);
+    background-image: linear-gradient(to right, #497285, #f5e1da); 
     padding: 0 !important;
 }
 
@@ -58,7 +58,7 @@ body
 
 #banner
 {
-    background-image: linear-gradient(to right, #a517ba, #5f1782);
+    background-image: linear-gradient(to right, #497285, #f5e1da);
     color: #fff;  
     padding-top: 5%;
 }
@@ -92,6 +92,7 @@ body
 #services
 {
     padding: 80px 0;
+		background-color: #d5e0e6;
 }
 
 .service-img
@@ -142,14 +143,14 @@ body
     box-shadow: none;
     padding: 8px 25px;
     border: none;
-    background-image: linear-gradient(to right, #a517ba, #5f1782);
+    background-color: #497285;
 }
 
 /*------------------ About Us ---------------------*/
 
 #about-us
 {
-    background: #f8f9fa;
+    background: #bfcad9;
     padding-bottom: 50px;
     padding-top: 50px;
 }
@@ -224,7 +225,7 @@ body
 
 #footer
 {
-    background-image: linear-gradient(to right, #a517ba, #5f1782);
+    background-image: linear-gradient(to right, #497285, #f5e1da);
     color: #fff;
 }
 
@@ -255,7 +256,7 @@ body
     text-align: center;
     padding-top: 7px;
     border-radius: 2px;
-    background-image: linear-gradient(to right, #a517ba, #5f1782);
+    background-color: #497285;
 }
 
 .footer-box .form-control
@@ -273,7 +274,7 @@ body
     border: none;
     border-radius: 0;
     margin-top: 30px;
-    background-image: linear-gradient(to right, #a517ba, #5f1782);
+    background-color: #497285;
 }
 
 hr
