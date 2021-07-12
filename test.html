@@ -1,0 +1,760 @@
+<html>
+    
+    <head>
+        
+        <link href="prism.css" rel="stylesheet" />
+        <script src="prism.js"></script>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+                
+    </head>
+    
+    <body>
+
+        <!--- This html file will say there is an error with a closing code tag but that happens --->
+        <!--- if < or > is used in the code but this error will not effect the code or so I believe --->
+        
+        <div class="container">
+          <h2>Simple Collapsible</h2>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
+          <div id="demo" class="collapse">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </div>
+        </div>
+        
+        <div class="container">
+          <h2>Pascal</h2>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#pascal">View Code</button>
+          <div id="pascal" class="collapse">
+            <pre class="line-numbers">
+                <code class="language-pascal">program CeasarCipher;
+                uses
+                   SysUtils;
+
+                function encrypt(shift: integer; text: string): string;
+                var
+                   cypher: string = '';
+                   msg: string;
+                   c, i: integer;
+
+                begin
+                   msg := UpCase(text);
+                   for i := 1 to Length(msg) do
+                      begin
+                         c := byte(msg[i]);
+                         if not(msg[i] = ' ') then
+                            begin
+                            c := c + (shift mod 26);
+                            if (c > byte('Z')) then
+                               c := c - 26;
+                            end;
+                         cypher := cypher + chr(c);
+                      end;
+                      encrypt := cypher;
+                end;
+
+                function decrypt(shift: integer; text: string): string;
+                var
+                   cypher: string = '';
+                   msg: string;
+                   c, i: integer;
+
+                begin
+                   msg := UpCase(text);
+                   for i := 1 to Length(msg) do
+                      begin
+                         c := byte(msg[i]);
+                         if not(msg[i] = ' ') then
+                            begin
+                            c := c - (shift mod 26);
+                            if (c < byte('A')) then
+                               c := c + 26;
+                            end;
+                         cypher := cypher + chr(c);
+                      end;
+                      decrypt := cypher;
+                end;
+
+                function solve(maxVal: integer; text: string): string;
+                var
+                   cypher, msg: string;
+                   c, i, n: integer;
+
+                begin
+                   msg := text;
+                   cypher := '';
+                   for n := 0 to maxVal DO
+                      begin
+                         cypher := '';
+                         for i := 1 to Length(msg) do
+                            begin
+                               c := byte(msg[i]);
+                               if not(msg[i] = ' ') then
+                                  begin
+                                  c := c + (n mod 26);
+                                  if (c > byte('Z')) then
+                                     c := c - 26;
+                                  end;
+                               cypher := cypher + chr(c);
+                             end;
+                             writeln('Caesar ' + IntToStr(n) + ': ' + cypher);
+                   end;
+                end;
+
+                function main(): boolean;
+                var
+                   product1, product2: string;
+
+                begin
+                   product1 := encrypt(8, 'This is a test string from Alan');
+                   writeln(product1);
+                   product2 := decrypt(8, product1);
+                   writeln(product2);
+                   solve(26, 'HAL');
+                end;
+
+                begin
+                   main();
+                end.</byte(>
+
+                result$ = encrypt("This is a test string from Alan", 8)</code>
+            </pre>
+          </div>
+        </div>
+        
+        <div class="container">
+          <h2>Basic</h2>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#basic">View Code</button>
+          <div id="basic" class="collapse">
+            <pre class="line-numbers">
+            <code class="language-basic">Print result$
+
+            otherResult$ = decrypt(result$, 8)
+            Print otherResult$
+
+            Sleep 2
+
+            Call solve("HAL", 26)
+
+
+            Function encrypt$ (text$, shift)
+                msg$ = UCase$(text$)
+                cipher$ = ""
+
+                For letter = 1 To Len(msg$) Step 1
+                    c = Asc(Mid$(msg$, letter, 1))
+                    If c <> Asc(" ") Then
+                        c = c + (shift Mod 26)
+                        If c > Asc("Z") Then
+                            c = c - 26
+                        End If
+                    End If
+                    cipher$ = cipher$ + Chr$(c)
+                Next letter
+
+                encrypt$ = cipher$
+
+            End Function
+
+            Function decrypt$ (text$, shift)
+                msg$ = UCase$(text$)
+                cipher$ = ""
+
+                For letter = 1 To Len(msg$) Step 1
+                    c = Asc(Mid$(msg$, letter, 1))
+                    If c <> Asc(" ") Then
+                        c = c - (shift Mod 26)
+                        If c < Asc("A") Then
+                            c = c + 26
+                        End If
+                    End If
+                    cipher$ = cipher$ + Chr$(c)
+                Next letter
+
+                decrypt$ = cipher$
+
+            End Function
+
+
+            Sub solve (text$, maxVal)
+                msg$ = UCase$(text$)
+                cipher$ = ""
+
+                For i = 0 To maxVal Step 1
+                    cipher$ = ""
+                    For letter = 1 To Len(msg$) Step 1
+                        c = Asc(Mid$(msg$, letter, 1))
+                        If c <> Asc(" ") Then
+                            c = c + (i Mod 26)
+                            If c > Asc("Z") Then
+                                c = c - 26
+                            End If
+                        End If
+                        cipher$ = cipher$ + Chr$(c)
+                    Next letter
+                    Print "Caesar " + Str$(i) + ": " + cipher$
+                Next i
+
+            End Sub</code>
+        </pre>
+          </div>
+        </div>
+        
+        <div class="container">
+          <h2>COBOL</h2>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#cobol">View Code</button>
+          <div id="cobol" class="collapse">
+            <pre class="line-numbers">
+                <code class="language-cobol">IDENTIFICATION DIVISION.
+                PROGRAM-ID. CAESAR.
+                DATA DIVISION.
+                WORKING-STORAGE SECTION.
+                01 WS-TEXT PIC A(99).
+                01 WS-MOVE PIC 999.
+
+                01 WS-TEXT2 PIC A(99) VALUE "BPQA QA I BMAB ABZQVO NZWU ITIV".
+
+                01 WS-TEXT3 PIC A(99) VALUE "IBM".
+                01 WS-SOLV PIC A(99) VALUE 26.
+
+                PROCEDURE DIVISION.
+
+                MOVE "This is a test string from Alan" TO WS-TEXT.
+                SET WS-MOVE TO 8.
+
+                CALL 'SOLVE' USING WS-TEXT3, WS-SOLV.
+                CALL 'ENCRYPT' USING WS-TEXT, WS-MOVE.
+                CALL 'DECRYPT' USING WS-TEXT2, WS-MOVE.
+
+                STOP RUN.
+
+                END PROGRAM CAESAR.
+
+                IDENTIFICATION DIVISION.
+                PROGRAM-ID. ENCRYPT.
+                DATA DIVISION.
+                WORKING-STORAGE SECTION.
+                01 WS-MSG PIC A(99).
+                01 WS-CIPHER PIC A(99).
+                01 WS-COUNT PIC 999 VALUE 1.
+                01 WS-SPACE PIC 999 VALUE 1.
+                01 WS-ASCII PIC 999.
+
+                LINKAGE SECTION.
+                01 LS-TEXT PIC A(99).
+                01 LS-SHIFT PIC 999.
+                PROCEDURE DIVISION USING LS-TEXT, LS-SHIFT.
+
+                MAIN.
+                MOVE FUNCTION UPPER-CASE(LS-TEXT) TO WS-MSG.
+                PERFORM SHIFT-LOOP WITH TEST BEFORE UNTIL WS-COUNT > FUNCTION LENGTH(FUNCTION TRIM(WS-MSG)).
+
+                DISPLAY WS-CIPHER.
+
+                STOP RUN.
+
+                SHIFT-LOOP.
+
+                SET WS-ASCII TO FUNCTION ORD(WS-MSG(WS-COUNT:1)).
+
+                IF WS-MSG(WS-COUNT:1) NOT= " " THEN
+                ADD FUNCTION MOD(LS-SHIFT, 26) TO WS-ASCII.
+
+                *> NESTED LOOP WAS NOT WORKING SO I HAD TO DO THIS INSTEAD
+                IF WS-ASCII > FUNCTION ORD("Z") and FUNCTION CHAR(WS-ASCII) NOT = " " THEN
+                SUBTRACT 26 FROM WS-ASCII.
+
+                SET WS-SPACE TO WS-COUNT
+                STRING
+                FUNCTION CHAR(WS-ASCII)
+                INTO WS-CIPHER
+                WITH POINTER WS-SPACE
+                END-STRING.
+
+                ADD 1 TO WS-COUNT.
+
+                SEC. 
+                END PROGRAM ENCRYPT.
+
+
+                IDENTIFICATION DIVISION.
+                PROGRAM-ID. DECRYPT.
+                DATA DIVISION.
+                WORKING-STORAGE SECTION.
+                01 WS-COUNT PIC 999 VALUE 0.
+                01 WS-TEMP PIC 999 VALUE 26.
+                LINKAGE SECTION.
+                01 LS-TEXT PIC A(99).
+                01 LS-SHIFT PIC 999.
+                PROCEDURE DIVISION USING LS-TEXT, LS-SHIFT.
+
+                MAIN.
+                DISPLAY "HERE"
+                SUBTRACT LS-SHIFT FROM WS-TEMP.
+                CALL 'ENCRYPT' USING LS-TEXT, WS-TEMP.
+
+                END PROGRAM DECRYPT.
+
+
+                IDENTIFICATION DIVISION.
+                PROGRAM-ID. SOLVE.
+                DATA DIVISION.
+                WORKING-STORAGE SECTION.
+                01 WS-MSG PIC A(99).
+                01 WS-COUNT PIC 999 VALUE 0.
+
+                LINKAGE SECTION.
+                01 LS-TEXT PIC A(99).
+                01 LS-VAL PIC 999.
+                PROCEDURE DIVISION USING LS-TEXT, LS-VAL.
+
+                MAIN.
+                MOVE FUNCTION UPPER-CASE(LS-TEXT) TO WS-MSG.
+                PERFORM LOOP WITH TEST BEFORE UNTIL WS-COUNT > LS-VAL.
+
+                STOP RUN.
+
+                LOOP.
+                DISPLAY "Caesar " WS-COUNT ": ".
+                CALL 'ENCRYPT' USING WS-MSG, WS-COUNT.
+                ADD 1 TO WS-COUNT.
+
+
+                SEC.
+                END PROGRAM SOLVE.</code>
+            </pre>
+          </div>
+        </div>
+        
+        <div class="container">
+          <h2>Fortran</h2>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#fortran">View Code</button>
+          <div id="fortran" class="collapse">      
+            <pre class="line-numbers">
+                <code class="language-fortran">program MAIN
+                    implicit none
+                    character (len = 31) :: shifted, normal
+                    shifted = encrypt("This is a test string from Alan", 8)
+                    print*, shifted
+                    normal = decrypt(shifted, 8)
+                    print*, normal
+
+                    call solve("HAL", 26)
+
+                contains 
+
+                    function encrypt(text, shift) result(cipher)
+                        implicit none
+                        integer, intent(in):: shift
+                        integer :: i, c, f
+
+                        character (len = *), intent(in) :: text
+                        character (len = len(text)) :: cipher, msg
+
+                        msg = to_upper(text)
+                        cipher = "" 
+                        f = 0 
+                        do i = 1, len(msg)
+                            c = iachar(msg(i:i))
+                            if(c /= iachar(" ")) then
+                                c = c + (mod(shift, 26))
+                                if(c > iachar("Z")) then
+                                    c = c - 26
+                                end if
+                            end if
+                            if(c == iachar(" ")) then 
+                                f = 1
+                            else if (f == 1) then  
+                                cipher = trim(cipher)//" "//char(c)
+                                f = 0
+                            else
+                                cipher = trim(cipher) // char(c)
+                            end if
+                        end do
+                    end function
+
+
+                    function decrypt(text, shift) result(cipher)
+                        implicit none
+                        integer, intent(in):: shift
+                        integer :: i, c, f
+
+                        character (len = *), intent(in) :: text
+                        character (len = len(text)) :: cipher, msg
+
+                        msg = to_upper(text)
+                        cipher = "" 
+                        f = 0 
+                        do i = 1, len(msg)
+                            c = iachar(msg(i:i))
+                            if(c /= iachar(" ")) then
+                                c = c - (mod(shift, 26))
+                                if(c < iachar("A")) then
+                                    c = c + 26
+                                end if
+                            end if
+                            if(c == iachar(" ")) then 
+                                f = 1
+                            else if (f == 1) then  
+                                cipher = trim(cipher)//" "//char(c)
+                                f = 0
+                            else
+                                cipher = trim(cipher) // char(c)
+                            end if
+                        end do
+                    end function
+
+
+                    subroutine solve(text, maxVal)
+                        implicit none
+                        integer, intent(in):: maxVal
+                        integer :: i, c, f, n
+
+                        character (len = *), intent(in) :: text
+                        character (len = len(text)) :: cipher, msg
+
+                        msg = to_upper(text)
+                        cipher = "" 
+                        f = 0 
+                        do n = 0, maxVal
+                            cipher = "" 
+                            do i = 1, len(msg)
+                                c = iachar(msg(i:i))
+                                if(c /= iachar(" ")) then
+                                    c = c + (mod(n, 26))
+                                    if(c > iachar("Z")) then
+                                        c = c - 26
+                                    end if
+                                end if
+                                if(c == iachar(" ")) then 
+                                    f = 1
+                                else if (f == 1) then  
+                                    cipher = trim(cipher)//" "//char(c)
+                                    f = 0
+                                else
+                                    cipher = trim(cipher) // char(c)
+                                end if
+                            end do
+                            print*, "Caesar " , n , ": " // cipher
+                        end do
+
+                    end subroutine
+
+                    function to_upper(strIn) result(strOut)
+                    ! function code from:https://stackoverflow.com/questions/10759375/how-can-i-write-a-to-upper-or-to-lower-function-in-f90
+                    ! Original author: jvriesem
+
+                         implicit none
+
+                         character(len=*) :: strIn
+                         character(len=len(strIn)) :: strOut
+                         integer :: i,j
+
+                         do i = 1, len(strIn)
+                              j = iachar(strIn(i:i))
+                              if (j>= iachar("a") .and. j<=iachar("z") ) then
+                                   strOut(i:i) = achar(iachar(strIn(i:i))-32)
+                              else
+                                   strOut(i:i) = strIn(i:i)
+                              end if
+                         end do
+
+                    end function to_upper
+
+                end program </iachar(></iachar(>    </code>
+
+            </pre>
+          </div>
+        </div>
+        
+        <div class="container">
+          <h2>Object Oriented Scala</h2>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ooscala">View Code</button>
+          <div id="ooscala" class="collapse">      
+            <pre class="line-numbers">
+                <code class="language-scala">object CaesarCipher {
+
+                  def main(args: Array[String]) {
+                    var ciph: String = encrypt("This is a test string from Alan", 8)
+                    println(ciph)
+                    println(decrypt(ciph,8))
+                    solve("HAL", 26)
+                  }
+
+                  def encrypt(text: String, shift: Int): String = {
+                    var msg: String = text.toUpperCase()
+                    var cipher: String = ""
+
+                    for (i <- 0 to msg.length()-1) {
+                      var c: Int = msg.charAt(i).toInt
+                      if (c != ' '.toInt) {
+                        c = c + (shift % 26)
+                        if (c > 'Z') {
+                          c = c - 26
+                        }
+                      }
+                      cipher += c.toChar
+                    }
+                    return cipher
+                  }
+
+                  def decrypt(text: String, shift: Int): String = {
+                    var msg: String = text.toUpperCase()
+                    var cipher: String = ""
+
+                    for (i <- 0 to msg.length()-1) {
+                      var c: Int = msg.charAt(i).toInt
+                      if (c != ' '.toInt) {
+                        c = c - (shift % 26)
+                        if (c < 'A') {
+                          c = c + 26
+                        }
+                      }
+                      cipher += c.toChar
+                    }
+                    return cipher
+                  }
+
+                  def solve(text: String, maxVal: Int): Unit ={
+                    var msg: String = text.toUpperCase()
+                    var cipher: String = ""
+
+                    for (n <- 0 to maxVal){
+                      cipher = ""
+                      for (i <- 0 to msg.length()-1) {
+                        var c: Int = msg.charAt(i).toInt
+                        if (c != ' '.toInt) {
+                          c = c + (n % 26)
+                          if (c > 'Z') {
+                            c = c - 26
+                          }
+                        }
+                        cipher += c.toChar
+                      }
+                      println("Ceasar " + n + ": " + cipher)
+                    }
+                  }
+                } </-> <!--- This fix sohuld work it does not show up in the code ---></code>
+
+            </pre>
+          </div>
+        </div>
+        
+        <div class="container">
+          <h2>Functional Scala</h2>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#fscala">View Code</button>
+          <div id="fscala" class="collapse">
+            <pre class="line-numbers">
+                <p>Functional Scala</p>
+                <code class="language-scala">object Caesar {
+                   def main(args: Array[String]) {
+                      println(encrypt("This is a test string from Alan", 8))
+                      println(decrypt("BPQA QA I BMAB ABZQVO NZWU ITIV", 8))
+                      solve("HAL", 0, 26)
+                   }
+
+                   def shiftChar(c: Char, shift: Int): Char = {
+                       var ansNum: Int = c.toInt
+                       if (ansNum != ' '.toInt) {
+                           val temp2 = ansNum + (shift % 26)
+                           if (temp2 > 'Z'.toInt)
+                               ansNum = temp2 - 26
+                           else ansNum = temp2
+                       }
+                       return ansNum.toChar 
+                   }
+
+                   def encrypt(text: String, shift: Int): String = {
+                       val msg = text.map(c => c.toUpper)
+                       return msg.map(c => shiftChar(c, shift))
+                   }
+
+                   def decrypt(text: String, shift: Int): String = {
+                       return encrypt(text, 26 - shift)
+                   }
+
+                   def solve (text: String, startVal: Int, maxVal: Int): Unit = {
+                       if (startVal <= maxVal){
+                           println("Caesar " + startVal + ": " + encrypt(text, startVal))
+                           solve(text, startVal+1, maxVal)
+                       }
+                   }
+                }</> </code>
+            </pre>
+          </div>
+        </div>
+        
+        <div class="container">
+          <h2>Haskell</h2>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#haskell">View Code</button>
+          <div id="haskell" class="collapse">
+            <pre class="line-numbers">
+                <code class="language-haskell">module Main (encrypt, decrypt, solve, main) where 
+
+                import Data.Char
+
+                encrypt, decrypt :: (Integral a) => a -> String -> String
+                encrypt k = map f
+                    where f c = case generalCategory c of
+                              LowercaseLetter -> shiftChar 'a' k c
+                              UppercaseLetter -> shiftChar 'A' k c
+                              _               -> c
+                decrypt k = encrypt (-k)
+
+
+                solve :: Integer -> Integer -> String -> IO ()
+                solve s e t = if s < e
+                    then do
+                        putStrLn("Caesar " ++ show s ++ ": " ++ show (encrypt s t))
+                        temp <- return (s+1)
+                        solve temp e t
+                    else putStrLn("Caesar " ++ show s ++ ": " ++ show (encrypt s t))
+
+                shiftChar :: (Integral a) => Char -> a -> Char -> Char
+                shiftChar b o c = chr $ fromIntegral (b' + (c' - b' + o) `mod` 26)
+                    where b' = fromIntegral $ ord b
+                          c' = fromIntegral $ ord c
+
+                main = do
+                      print (encrypt 8 "This is a test string from Alan")
+                      print (decrypt 8 "Bpqa qa i bmab abzqvo nzwu Itiv")
+                      solve 0 26 "HAL"            </code>
+            </pre>
+          </div>
+        </div>
+        
+        <div class="container">
+          <h2>Erlang</h2>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#erlang">View Code</button>
+          <div id="erlang" class="collapse">
+            <pre class="line-numbers">
+                <code class="language-erlang ">-module(CaesarCipher).
+                -export([encrypt/2, decrypt/2, solve/4, main/0]).
+
+
+                %Needed to shift the characters
+                shift(Char, Num) when (Char >= $A) and (Char =< $Z) ->
+                    Temp = Char + (Num rem 26),
+                    if Temp > 90 ->
+                        Ans = Temp - 26;
+                    true -> 
+                        Ans = Temp
+                    end,
+                    Ans;
+                shift(Char, _Key) -> %goes here if condition isn't met
+                    Char.
+
+                encrypt(Text, Shift) ->
+                   Upcase = string:uppercase(Text),
+                   Cipher = lists:map(fun(Char) -> shift(Char, Shift) end, Upcase),
+                   io:fwrite("~s~n", [Cipher]).
+
+
+                decrypt(Text, Shift) ->
+                    encrypt(Text, 26-Shift).
+
+
+                solve(Text, Max, N, Inc) when N =< Max ->
+                    io:fwrite("Caesar "),
+                    io:fwrite("~w",[N]),
+                    io:fwrite(": "),
+                    encrypt(Text, N),
+                    [Inc|solve(Text, Max, N+1, Inc)];	
+                solve(Text, Max, N, Inc) ->
+                    [].
+
+                main() ->
+                   encrypt("This is a test string from Alan", 8),
+                   decrypt("BPQA QA I BMAB ABZQVO NZWU ITIV", 8),
+                   solve("HAL", 26, 0, 1). </Max></$Z)>           </code>
+            </pre>
+          </div>
+        </div>
+        
+        <div class="container">
+          <h2>ML</h2>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#ml">View Code</button>
+          <div id="ml" class="collapse">
+            <pre class="line-numbers">
+                <code class="language-sml">fun shiftChar (ch : char, shftAmt : int) : char =
+                    case ch of #" " => #" "
+                    |  _ => c (ord (Char.toUpper ch) + (shftAmt mod 26));
+
+                fun encrypt (text : string, shftAmt : int) : string =
+                    String.implode(map (fn x => shiftChar (x, shftAmt)) (String.explode(text)));
+
+                fun decrypt (text : string, shftAmt : int) : string =
+                    encrypt (text, 26 - shftAmt);
+
+                fun solve (text : string, maxShftAmt : int) =
+                    map (fn x => print("Caesar "^(Int.toString x)^": "^encrypt(text, x)^"\n")) (List.tabulate(maxShftAmt, fn x => x + 1));
+
+
+                print(encrypt("This is a test string from Alan", 8));
+                print(decrypt("BPQA QA I BMAB ABZQVO NZWU ITIV", 8));
+                solve("HAl", 26); </code>
+            </pre>
+          </div>
+        </div>
+        
+        <div class="container">
+          <h2>Lisp</h2>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#lisp">View Code</button>
+          <div id="lisp" class="collapse">
+            <pre class="line-numbers">
+                <code class="language-lisp">(defun shiftChar (ch shift)
+                    (setq c (char-code ch))
+                    (if (/= c 32)
+                        (progn
+                            (setq c (+ c (mod shift 26)))
+                            (if (> c 90)
+                                (setq c (- c 26))
+                            )
+                        )
+                    )
+                    (return-from shiftChar (code-char c))    
+                )
+
+                (defun encrypt (text shift)
+                  (map 'string #'(lambda (c) (shiftChar c shift)) (string-upcase text))
+                )
+
+                (defun decrypt (text shift) 
+                    (encrypt text (- shift))
+                )
+
+                (defun solve (text max) 
+                    (setq a 0)
+                    (loop
+                        (format t "Caesar ~a" a)
+                        (format t ": ~a ~%"(encrypt text a))
+                        (setq a (+ a 1))
+                        (when (> a max)(return))
+                    )
+                )
+
+                (let* ((original-text "This is a test string from Alan")
+                       (shift 3)
+                       (cipher-text (encrypt original-text shift))
+                       (recovered-text (decrypt cipher-text shift))
+                      )
+                  (solve "HAL" 26)
+                  (format t " Original: ~a ~%" original-text)
+                  (format t "Encrypted: ~a ~%" cipher-text)
+                  (format t "Decrypted: ~a ~%" recovered-text)
+                )            </code>
+            </pre>
+          </div>
+        </div>
+        
+    </body>
+    
+</html>
+
+
+
+
